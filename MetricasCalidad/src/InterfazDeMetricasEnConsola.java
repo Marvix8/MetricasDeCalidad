@@ -1,4 +1,6 @@
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class InterfazDeMetricasEnConsola {
 	
@@ -44,7 +46,15 @@ public class InterfazDeMetricasEnConsola {
 		
 		System.out.println(PRESENTACION);
 		
-		String input = System.console().readLine();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		String input = null;
+		try {
+			input = br.readLine();
+		} catch (IOException e1) {
+			
+			e1.printStackTrace();
+		}
 		
 		try {
 			validarEntrada(input.split(","));
@@ -55,26 +65,130 @@ public class InterfazDeMetricasEnConsola {
 			cargarInterfaz(caracteristicas);
 		}
 		
-		solicitarDatos(caracteristicas);
+		solicitarDatos(caracteristicas, input.split(","));
 	}
 
 
-	private static void validarEntrada(String[] split) throws Exception {
+	private static void validarEntrada(String[] input) throws Exception {
 		
-		for(String indiceIngresado: split) {
+		for(String indiceIngresado: input) {
 			
-			for(int i = 0; i < INDICE.length; i++) {
+			boolean encontrado = false;
+			
+			for(int i = 0; i < INDICE.length && !encontrado; i++) {
 				
-				if(!indiceIngresado.equals(INDICE[i])) {
-					throw new Exception("El indice " + indiceIngresado + " no es correcto. Intente nuevamente.");
+				if(indiceIngresado.trim().equals(INDICE[i])) {
+					encontrado = true;
 				}
+			}
+			
+			if(!encontrado) {
+				throw new Exception("El indice " + indiceIngresado + " no es correcto. Intente nuevamente.");
 			}
 		}
 	}
 
 	
-	private static void solicitarDatos(Caracteristicas caracteristicas) {
-		// TODO Auto-generated method stub
+	private static void solicitarDatos(Caracteristicas caracteristicas, String[] input) {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		for(String indiceIngresado: input) {
+			
+			switch(indiceIngresado.trim()){
+				
+				case "1a": 
+					
+					System.out.println("Ingresar 1 si hay encriptacion de datos o 0 si no lo hay\n");
+					
+					
+					
+					break;
+					
+				case "1b": 
+					break;
+					
+				case "2a": 
+					break;
+					
+				case "2b": 
+					break;
+					
+				case "3a": 
+					break;
+					
+				case "3b": 
+					break;
+					
+				case "4a": 
+					break;
+					
+				case "4b": 
+					break;
+					
+				case "5a": 
+					break;
+					
+				case "5b": 
+					break;
+					
+				case "6a": 
+					break;
+					
+				case "6b": 
+					break;
+					
+			}
+			
+//			if(indiceIngresado.trim().equals("1b")){ 
+//				
+//			}
+//			
+//			if(caracteristicas.getOrdenError() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getUsoProcesador() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getTiempoSinInformarEstado() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getProteccionDatosProcesados() != null && caracteristicas.getLogActividades() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getReanudarActividadAnteFalla() != null && caracteristicas.getReanudarEnEstadoAnterior() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getPorcentajeComentariosPorMetodo() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+////		if(caracteristicas.getComplejidadCiclomatica() != null) {
+////			valor ++;
+////		}
+//			
+//			if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getCapacidadDeSerOperado() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getCantSOCompatibles() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+//			
+//			if(caracteristicas.getCantPasosInstalacion() != null) {
+//				cantidadCaracteristicas ++;
+//			}
+		}
+		
 		
 	}
 }
