@@ -14,7 +14,7 @@ public class Caracteristicas {
 	private Double complejidadCiclomatica;
 	private Boolean ayduaContextual;
 	private Boolean manualUsuarioIncorporado;
-	//falta capacidad de ser operado
+	private CapacidadDeSerOperado capacidadDeSerOperado;
 	private Double cantSOCompatibles;
 	private Double cantPasosInstalacion;
 	
@@ -96,6 +96,12 @@ public class Caracteristicas {
 	}
 	public void setManualUsuarioIncorporado(Boolean manualUsuarioIncorporado) {
 		this.manualUsuarioIncorporado = manualUsuarioIncorporado;
+	}
+	public CapacidadDeSerOperado getCapacidadDeSerOperado() {
+		return capacidadDeSerOperado;
+	}
+	public void setCapacidadDeSerOperado(CapacidadDeSerOperado capacidadDeSerOperado) {
+		this.capacidadDeSerOperado = capacidadDeSerOperado;
 	}
 	public Double getCantSOCompatibles() {
 		return cantSOCompatibles;

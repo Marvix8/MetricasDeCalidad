@@ -15,6 +15,8 @@ public class ProcesarCaracteristicas {
 	public static final double LIMITE_SUP_CANTIDAD_SO_COMPATIBLES = 3;
 	public static final double LIMITE_INF_CANTIDAD_PASOS_INSTALACION = 3;
 	public static final double LIMITE_SUP_CANTIDAD_PASOS_INSTALACION = 7;
+	
+	public static final double MEJOR_CALIFICACION = 3;
 
 	
 	public static double calcularCalidad(Caracteristicas caracteristicas) {
@@ -26,9 +28,60 @@ public class ProcesarCaracteristicas {
 		return (valorAlcanzado/valorMaximo) * 100;
 	}
 	
+	
 	private static double calcularValorMaximo(Caracteristicas caracteristicas) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		double cantidadCaracteristicas = 0;
+		
+		if(caracteristicas.getEncriptacionDatos() != null && caracteristicas.getInicioSesionUsuarios() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getOrdenError() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getUsoProcesador() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getTiempoSinInformarEstado() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getProteccionDatosProcesados() != null && caracteristicas.getLogActividades() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getReanudarActividadAnteFalla() != null && caracteristicas.getReanudarEnEstadoAnterior() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getPorcentajeComentariosPorMetodo() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+//		if(caracteristicas.getComplejidadCiclomatica() != null) {
+//			valor ++;
+//		}
+		
+		if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getCapacidadDeSerOperado() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getCantSOCompatibles() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		if(caracteristicas.getCantPasosInstalacion() != null) {
+			cantidadCaracteristicas ++;
+		}
+		
+		return cantidadCaracteristicas * MEJOR_CALIFICACION;
 	}
 
 	private static double calcularValorAlcanzado(Caracteristicas caracteristicas) {
@@ -43,19 +96,19 @@ public class ProcesarCaracteristicas {
 		
 		if(caracteristicas.getOrdenError() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getOrdenError(), LIMITE_SUP_ORDEN_ERROR, LIMITE_INF_ORDEN_ERROR);
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getOrdenError(), LIMITE_SUP_ORDEN_ERROR, LIMITE_INF_ORDEN_ERROR, false);
 			
 		}
 		
 		if(caracteristicas.getUsoProcesador() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getUsoProcesador(), LIMITE_SUP_USO_PROCESADOR, LIMITE_INF_USO_PROCESADOR);
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getUsoProcesador(), LIMITE_SUP_USO_PROCESADOR, LIMITE_INF_USO_PROCESADOR, false);
 		
 		}
 		
 		if(caracteristicas.getTiempoSinInformarEstado() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getTiempoSinInformarEstado(), LIMITE_SUP_TIEMPO_SIN_INFORMAR_ESTADO, LIMITE_INF_TIEMPO_SIN_INFORMAR_ESTADO);
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getTiempoSinInformarEstado(), LIMITE_SUP_TIEMPO_SIN_INFORMAR_ESTADO, LIMITE_INF_TIEMPO_SIN_INFORMAR_ESTADO, false);
 		
 		}
 		
@@ -73,15 +126,15 @@ public class ProcesarCaracteristicas {
 		
 		if(caracteristicas.getPorcentajeComentariosPorMetodo() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getPorcentajeComentariosPorMetodo(), LIMITE_SUP_PORCENTAJE_COMENTARIOS_POR_METODO, LIMITE_INF_PORCENTAJE_COMENTARIOS_POR_METODO);
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getPorcentajeComentariosPorMetodo(), LIMITE_SUP_PORCENTAJE_COMENTARIOS_POR_METODO, LIMITE_INF_PORCENTAJE_COMENTARIOS_POR_METODO, true);
 		
 		}
 		
-		if(caracteristicas.getComplejidadCiclomatica() != null) {
-			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getComplejidadCiclomatica(), LIMITE_SUP_COMPLEJIDAD_CICLOMATICA, LIMITE_INF_COMPLEJIDAD_CICLOMATICA);
-		
-		}
+//		if(caracteristicas.getComplejidadCiclomatica() != null) {
+//			
+//			valor += medirCaracteristicaEnIntervalo(caracteristicas.getComplejidadCiclomatica(), LIMITE_SUP_COMPLEJIDAD_CICLOMATICA, LIMITE_INF_COMPLEJIDAD_CICLOMATICA);
+//		
+//		}
 		
 		if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
 			 
@@ -89,27 +142,62 @@ public class ProcesarCaracteristicas {
 		
 		}
 		
+		if(caracteristicas.getCapacidadDeSerOperado() != null) {
+			
+			if(caracteristicas.getCapacidadDeSerOperado() == CapacidadDeSerOperado.BUENO) {
+				valor +=3;
+			}
+			else if(caracteristicas.getCapacidadDeSerOperado() == CapacidadDeSerOperado.REGULAR) {
+				valor += 2;
+			}
+			else {
+				valor ++;
+			}
+		}
+		
 		if(caracteristicas.getCantSOCompatibles() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getCantSOCompatibles(), LIMITE_SUP_CANTIDAD_SO_COMPATIBLES, LIMITE_INF_CANTIDAD_SO_COMPATIBLES);
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getCantSOCompatibles(), LIMITE_SUP_CANTIDAD_SO_COMPATIBLES, LIMITE_INF_CANTIDAD_SO_COMPATIBLES, true);
 		
 		}
 		
 		if(caracteristicas.getCantPasosInstalacion() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getCantPasosInstalacion(), LIMITE_SUP_CANTIDAD_PASOS_INSTALACION, LIMITE_INF_CANTIDAD_PASOS_INSTALACION);
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getCantPasosInstalacion(), LIMITE_SUP_CANTIDAD_PASOS_INSTALACION, LIMITE_INF_CANTIDAD_PASOS_INSTALACION, false);
 		
 		}
 		
 		return valor;
 	}
 	
-	private static double medirCaracteristicaEnIntervalo(Double caracteristica, double limiteSup, double limiteInf) {
+	
+	
+	//la logicaPosiva quiere decir que cuanto mayor sea el valor de la caracteristica mejor es
+	private static double medirCaracteristicaEnIntervalo(Double caracteristica, double limiteSup, double limiteInf, boolean logicaPositiva) {
 		
-			
-		
-		return 0;
+			if(logicaPositiva) {
+				if(caracteristica >= limiteSup) {
+					return 3;
+				}
+				else if(caracteristica <= limiteInf) {
+					return 1;
+				}
+				
+			}
+			else {
+				if(caracteristica >= limiteSup) {
+					return 1;
+				}
+				else if(caracteristica <= limiteInf) {
+					return 3;
+				}
+				
+			}
+		//si se encuentra dentro del intervalo es regular(2)
+		return 2;
 	}
+	
+	
 	
 	private static double medirCaracteristicaBooleana(Boolean proposicion1, Boolean proposicion2) {
 		
