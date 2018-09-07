@@ -4,19 +4,19 @@ public class Caracteristicas {
 	private Boolean encriptacionDatos;
 	private Boolean inicioSesionUsuarios;
 	private Double ordenError;
-	private Integer usoProcesador;
-	private Integer tiempoSinInformarEstado;
+	private Double usoProcesador;
+	private Double tiempoSinInformarEstado;
 	private Boolean proteccionDatosProcesados;
 	private Boolean logActividades;
 	private Boolean reanudarActividadAnteFalla;
 	private Boolean reanudarEnEstadoAnterior;
-	private Integer	porcentajeComentariosPorMetodo;
-	private Integer complejidadCiclomatica;
+	private Double	porcentajeComentariosPorMetodo;
+	private Double complejidadCiclomatica;
 	private Boolean ayduaContextual;
 	private Boolean manualUsuarioIncorporado;
 	//falta capacidad de ser operado
-	private Integer cantSOCompatibles;
-	private Integer cantPasosInstalacion;
+	private Double cantSOCompatibles;
+	private Double cantPasosInstalacion;
 	
 	
 	public Boolean getEncriptacionDatos() {
@@ -37,16 +37,16 @@ public class Caracteristicas {
 	public void setOrdenError(Double ordenError) {
 		this.ordenError = ordenError;
 	}
-	public Integer getUsoProcesador() {
+	public Double getUsoProcesador() {
 		return usoProcesador;
 	}
-	public void setUsoProcesador(Integer usoProcesador) {
+	public void setUsoProcesador(Double usoProcesador) {
 		this.usoProcesador = usoProcesador;
 	}
-	public Integer getTiempoSinInformarEstado() {
+	public Double getTiempoSinInformarEstado() {
 		return tiempoSinInformarEstado;
 	}
-	public void setTiempoSinInformarEstado(Integer tiempoSinInformarEstado) {
+	public void setTiempoSinInformarEstado(Double tiempoSinInformarEstado) {
 		this.tiempoSinInformarEstado = tiempoSinInformarEstado;
 	}
 	public Boolean getProteccionDatosProcesados() {
@@ -73,16 +73,16 @@ public class Caracteristicas {
 	public void setReanudarEnEstadoAnterior(Boolean reanudarEnEstadoAnterior) {
 		this.reanudarEnEstadoAnterior = reanudarEnEstadoAnterior;
 	}
-	public Integer getPorcentajeComentariosPorMetodo() {
+	public Double getPorcentajeComentariosPorMetodo() {
 		return porcentajeComentariosPorMetodo;
 	}
-	public void setPorcentajeComentariosPorMetodo(Integer porcentajeComentariosPorMetodo) {
+	public void setPorcentajeComentariosPorMetodo(Double porcentajeComentariosPorMetodo) {
 		this.porcentajeComentariosPorMetodo = porcentajeComentariosPorMetodo;
 	}
-	public Integer getComplejidadCiclomatica() {
+	public Double getComplejidadCiclomatica() {
 		return complejidadCiclomatica;
 	}
-	public void setComplejidadCiclomatica(Integer complejidadCiclomatica) {
+	public void setComplejidadCiclomatica(Double complejidadCiclomatica) {
 		this.complejidadCiclomatica = complejidadCiclomatica;
 	}
 	public Boolean getAyduaContextual() {
@@ -97,16 +97,16 @@ public class Caracteristicas {
 	public void setManualUsuarioIncorporado(Boolean manualUsuarioIncorporado) {
 		this.manualUsuarioIncorporado = manualUsuarioIncorporado;
 	}
-	public Integer getCantSOCompatibles() {
+	public Double getCantSOCompatibles() {
 		return cantSOCompatibles;
 	}
-	public void setCantSOCompatibles(Integer cantSOCompatibles) {
+	public void setCantSOCompatibles(Double cantSOCompatibles) {
 		this.cantSOCompatibles = cantSOCompatibles;
 	}
-	public Integer getCantPasosInstalacion() {
+	public Double getCantPasosInstalacion() {
 		return cantPasosInstalacion;
 	}
-	public void setCantPasosInstalacion(Integer cantPasosInstalacion) {
+	public void setCantPasosInstalacion(Double cantPasosInstalacion) {
 		this.cantPasosInstalacion = cantPasosInstalacion;
 	}
 	
