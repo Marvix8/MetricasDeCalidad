@@ -9,8 +9,8 @@ public class ProcesarCaracteristicas {
 	public static final double LIMITE_SUP_TIEMPO_SIN_INFORMAR_ESTADO = 6;
 	public static final double LIMITE_INF_PORCENTAJE_COMENTARIOS_POR_METODO = 30;
 	public static final double LIMITE_SUP_PORCENTAJE_COMENTARIOS_POR_METODO = 70;
-	public static final double LIMITE_INF_COMPLEJIDAD_CICLOMATICA = 0;
-	public static final double LIMITE_SUP_COMPLEJIDAD_CICLOMATICA = 0;
+	public static final double LIMITE_INF_COMPLEJIDAD_CICLOMATICA = 10;
+	public static final double LIMITE_SUP_COMPLEJIDAD_CICLOMATICA = 20;
 	public static final double LIMITE_INF_CANTIDAD_SO_COMPATIBLES = 1;
 	public static final double LIMITE_SUP_CANTIDAD_SO_COMPATIBLES = 3;
 	public static final double LIMITE_INF_CANTIDAD_PASOS_INSTALACION = 3;
@@ -61,9 +61,9 @@ public class ProcesarCaracteristicas {
 			cantidadCaracteristicas ++;
 		}
 		
-//		if(caracteristicas.getComplejidadCiclomatica() != null) {
-//			valor ++;
-//		}
+		if(caracteristicas.getComplejidadCiclomatica() != null) {
+			cantidadCaracteristicas ++;
+		}
 		
 		if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
 			cantidadCaracteristicas ++;
@@ -130,11 +130,11 @@ public class ProcesarCaracteristicas {
 		
 		}
 		
-//		if(caracteristicas.getComplejidadCiclomatica() != null) {
-//			
-//			valor += medirCaracteristicaEnIntervalo(caracteristicas.getComplejidadCiclomatica(), LIMITE_SUP_COMPLEJIDAD_CICLOMATICA, LIMITE_INF_COMPLEJIDAD_CICLOMATICA);
-//		
-//		}
+		if(caracteristicas.getComplejidadCiclomatica() != null) {
+			
+			valor += medirCaracteristicaEnIntervalo(caracteristicas.getComplejidadCiclomatica(), LIMITE_SUP_COMPLEJIDAD_CICLOMATICA, LIMITE_INF_COMPLEJIDAD_CICLOMATICA, false);
+		
+		}
 		
 		if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
 			 

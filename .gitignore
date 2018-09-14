@@ -26,3 +26,7 @@ hs_err_pid*
 *.lock
 
 \.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/
+
+\.recommenders/caches/manual-mappings\.json
+
+\.recommenders/caches/identified-project-coordinates\.json
