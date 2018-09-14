@@ -40,13 +40,21 @@ public class Caracteristicas {
 	public Double getUsoProcesador() {
 		return usoProcesador;
 	}
-	public void setUsoProcesador(Double usoProcesador) {
+	public void setUsoProcesador(Double usoProcesador) throws CaracteristicaException {
+		
+		if(usoProcesador < 0 || usoProcesador > 100) {
+			throw new CaracteristicaException("El uso del procesador debe ser un valor entre 0 y 100\n");
+		}
 		this.usoProcesador = usoProcesador;
 	}
 	public Double getTiempoSinInformarEstado() {
 		return tiempoSinInformarEstado;
 	}
-	public void setTiempoSinInformarEstado(Double tiempoSinInformarEstado) {
+	public void setTiempoSinInformarEstado(Double tiempoSinInformarEstado) throws CaracteristicaException {
+		
+		if(tiempoSinInformarEstado <= 0) {
+			throw new CaracteristicaException("El tiempo debe ser un valor mayor a 0\n");
+		}
 		this.tiempoSinInformarEstado = tiempoSinInformarEstado;
 	}
 	public Boolean getProteccionDatosProcesados() {
@@ -76,13 +84,21 @@ public class Caracteristicas {
 	public Double getPorcentajeComentariosPorMetodo() {
 		return porcentajeComentariosPorMetodo;
 	}
-	public void setPorcentajeComentariosPorMetodo(Double porcentajeComentariosPorMetodo) {
+	public void setPorcentajeComentariosPorMetodo(Double porcentajeComentariosPorMetodo) throws CaracteristicaException {
+		
+		if(porcentajeComentariosPorMetodo < 0 || porcentajeComentariosPorMetodo > 100) {
+			throw new CaracteristicaException("El porcentaje debe ser un valor entre 0 y 100\n");
+		}
 		this.porcentajeComentariosPorMetodo = porcentajeComentariosPorMetodo;
 	}
 	public Double getComplejidadCiclomatica() {
 		return complejidadCiclomatica;
 	}
-	public void setComplejidadCiclomatica(Double complejidadCiclomatica) {
+	public void setComplejidadCiclomatica(Double complejidadCiclomatica) throws CaracteristicaException {
+		
+		if(complejidadCiclomatica <= 0) {
+			throw new CaracteristicaException("La complejidad ciclomatica debe ser un valor mayor a 0\n");
+		}
 		this.complejidadCiclomatica = complejidadCiclomatica;
 	}
 	public Boolean getAyduaContextual() {
@@ -106,15 +122,22 @@ public class Caracteristicas {
 	public Double getCantSOCompatibles() {
 		return cantSOCompatibles;
 	}
-	public void setCantSOCompatibles(Double cantSOCompatibles) {
+	public void setCantSOCompatibles(Double cantSOCompatibles) throws CaracteristicaException {
+		
+		if(cantSOCompatibles <= 0) {
+			throw new CaracteristicaException("La cantidad de sistemas operativos compatibles debe ser un valor mayor a 0\n");
+		}
 		this.cantSOCompatibles = cantSOCompatibles;
 	}
 	public Double getCantPasosInstalacion() {
 		return cantPasosInstalacion;
 	}
-	public void setCantPasosInstalacion(Double cantPasosInstalacion) {
+	public void setCantPasosInstalacion(Double cantPasosInstalacion) throws CaracteristicaException {
+		
+		if(cantPasosInstalacion <= 0) {
+			throw new CaracteristicaException("La cantidad de pasos para la instalacion debe ser un valor mayor a 0\n");
+		}
 		this.cantPasosInstalacion = cantPasosInstalacion;
 	}
-	
 
 }

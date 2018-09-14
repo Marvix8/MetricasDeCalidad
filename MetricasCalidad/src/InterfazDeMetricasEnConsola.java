@@ -93,6 +93,8 @@ public class InterfazDeMetricasEnConsola {
 		
 		String mensaje;
 		
+		boolean error;
+		
 		for(String indiceIngresado: input) {
 			
 			switch(indiceIngresado.trim()){
@@ -120,17 +122,33 @@ public class InterfazDeMetricasEnConsola {
 				case "2a": 
 					
 					mensaje = "Ingrese el porcentaje de uso del procesador\n";
+					error = false;
 					
-					caracteristicas.setUsoProcesador(ingresoValor(mensaje));
+					do {
+						try {
+							caracteristicas.setUsoProcesador(ingresoValor(mensaje));
+						} catch (CaracteristicaException e) {
+							System.out.println(e);
+							error = true;
+						}
+					}while(error);
 
 					break;
 					
 				case "2b": 					
 					
 					mensaje = "Ingrese el tiempo maximo sin informar el estado de una solicitud\n";
+					error = false;
 					
-					caracteristicas.setTiempoSinInformarEstado(ingresoValor(mensaje));
-
+					do {
+						try {
+							caracteristicas.setTiempoSinInformarEstado(ingresoValor(mensaje));
+						} catch (CaracteristicaException e) {
+							System.out.println(e);
+							error = true;
+						}
+					}while(error);
+					
 					break;
 					
 				case "3a": 					
@@ -160,8 +178,16 @@ public class InterfazDeMetricasEnConsola {
 				case "4a": 					
 					
 					mensaje = "Ingrese el porcentaje de comentarios por metodo\n";
+					error = false;
 					
-					caracteristicas.setPorcentajeComentariosPorMetodo(ingresoValor(mensaje));
+					do {
+						try {
+							caracteristicas.setPorcentajeComentariosPorMetodo(ingresoValor(mensaje));
+						} catch (CaracteristicaException e) {
+							System.out.println(e);
+							error = true;
+						}
+					}while(error);	
 
 					break;
 					
@@ -208,17 +234,33 @@ public class InterfazDeMetricasEnConsola {
 				case "6a": 					
 					
 					mensaje = "Ingrese con cuantos sistemas operativos es compatible el sistema\n";
+					error = false;
 					
-					caracteristicas.setCantSOCompatibles(ingresoValor(mensaje));
-
+					do {
+						try {
+							caracteristicas.setCantSOCompatibles(ingresoValor(mensaje));
+						} catch (CaracteristicaException e) {
+							System.out.println(e);
+							error = true;
+						}
+					}while(error);
+					
 					break;
 					
 				case "6b": 					
 
 					mensaje = "Ingrese la cantidad minima de pasos para instalar el sistema\n";
+					error = false;
 					
-					caracteristicas.setCantPasosInstalacion(ingresoValor(mensaje));
-
+					do {
+						try {
+							caracteristicas.setCantPasosInstalacion(ingresoValor(mensaje));
+						} catch (CaracteristicaException e) {
+							System.out.println(e);
+							error = true;
+						}
+					}while(error);
+					
 					break;
 					
 			}
