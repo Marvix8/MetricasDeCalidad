@@ -1,6 +1,8 @@
+package edu.unlam.metricas_calidad;
 
 public class Caracteristicas {
 	
+	public static boolean setEncriptacionDatos;
 	private Boolean encriptacionDatos;
 	private Boolean inicioSesionUsuarios;
 	private Double ordenError;
