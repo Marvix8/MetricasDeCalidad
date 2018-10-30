@@ -1,13 +1,21 @@
 package edu.unlam.controller;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
+import javax.xml.datatype.Duration;
+
 import edu.unlam.metricas_calidad.CapacidadDeSerOperado;
+import edu.unlam.metricas_calidad.CaracteristicaException;
 import edu.unlam.metricas_calidad.Caracteristicas;
+import edu.unlam.metricas_calidad.ProcesarCaracteristicas;
+import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -44,7 +52,7 @@ public class PrincipalController implements Initializable{
 	@FXML // fx:id="logCombo"
 	private ComboBox<String> logCombo;
 	
-	@FXML // fx:id="estadoAnteriorCombp"
+	@FXML // fx:id="estadoAnteriorCombo"
 	private ComboBox<String> estadoAnteriorCombo;
 	
 	/*
@@ -101,7 +109,7 @@ public class PrincipalController implements Initializable{
 	@FXML // fx:id="fiabilidadResultLabel"
 	private Label fiabilidadResultLabel;
 	
-	@FXML // fx:id="fiabilidadResultField2"
+	@FXML // fx:id="fiabilidadResultLabel2"
 	private Label fiabilidadResultLabel2;
 	
 	@FXML // fx:id="eficienciaResultLabel"
@@ -212,7 +220,8 @@ public class PrincipalController implements Initializable{
 	    });
 		
 		capacidadSerOperadoCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-			@Override public void changed(ObservableValue<? extends String> selected, String oldValue, String newValue) {
+			@Override 
+			public void changed(ObservableValue<? extends String> selected, String oldValue, String newValue) {
 				if (capacidadSerOperadoCombo.getValue().equals("Se Consulta a Personal Especializado")) {
 					caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.MALO);
 				} else if (capacidadSerOperadoCombo.getValue().equals("Se Requiere Manual de Usuario")) {
@@ -222,9 +231,114 @@ public class PrincipalController implements Initializable{
 				}
 			}
 	    });
-
 		
-	  }
+		complejidadCiclomaticaTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setComplejidadCiclomatica(Double.parseDouble(newValue));
+				} catch (NumberFormatException | CaracteristicaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		comportamientoFrenteTiempoTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setTiempoSinInformarEstado(Double.parseDouble(newValue));
+				} catch (NumberFormatException | CaracteristicaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		exactitudResultadosTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setOrdenError(Double.parseDouble(newValue));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		intalacionTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setCantPasosInstalacion(Double.parseDouble(newValue));
+				} catch (NumberFormatException | CaracteristicaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		multiSOTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setCantSOCompatibles(Double.parseDouble(newValue));
+				} catch (NumberFormatException | CaracteristicaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		porcentajeComentariosTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setPorcentajeComentariosPorMetodo(Double.parseDouble(newValue));
+				} catch (NumberFormatException | CaracteristicaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		utilizacionRecursosTextField.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	try {
+					caracteristicas.setUsoProcesador(Double.parseDouble(newValue));
+				} catch (NumberFormatException | CaracteristicaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		    }
+		});
+		
+		procesarButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+        		double calidad = ProcesarCaracteristicas.calcularCalidad(caracteristicas);
+        		if(calidad > -1) {
+        			DecimalFormat df = new DecimalFormat("0.00");
+            		String resultado = df.format(calidad);
+            		
+            		resultLabel.setText(resultado);	
+        		}
+        		
+            }
+        });
+		
+		limpiarButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	caracteristicas = new Caracteristicas();
+            	limpiarCampos();
+            }
+        });
+		
+	}
 
 	/**
 	 * Método utilizado para popular los ComboBox.
@@ -241,6 +355,36 @@ public class PrincipalController implements Initializable{
 		capacidadSerOperadoCombo.setItems(ListaCapacidadOperado);
 	}
 
+	/*
+	 * Método utilizado para limpiar los campos.
+	 */
+	private void limpiarCampos() {
+		encriptacionDatosCombo.setValue("Seleccione un Valor");
+    	ayudaCombo.setValue("Seleccione un Valor");
+    	datosProcesadosCombo.setValue("Seleccione un Valor");
+    	capacidadSerOperadoCombo.setValue("Seleccione un Valor");
+    	fallaCriticaCombo.setValue("Seleccione un Valor");
+    	iniciarSesionCombo.setValue("Seleccione un Valor");
+    	manualUsuarioCombo.setValue("Seleccione un Valor");
+    	logCombo.setValue("Seleccione un Valor");
+    	estadoAnteriorCombo.setValue("Seleccione un Valor");
+    	complejidadCiclomaticaTextField.setText("");
+    	comportamientoFrenteTiempoTextField.setText("");
+    	exactitudResultadosTextField.setText("");
+    	intalacionTextField.setText("");
+    	multiSOTextField.setText("");
+    	porcentajeComentariosTextField.setText("");
+    	utilizacionRecursosTextField.setText("");
+    	usabilidadResultFLabel.setText("");
+    	portabilidadResultLabel.setText("");
+    	mantenibilidadResultLabel.setText("");
+    	funcionalidadResultLabel.setText("");
+    	fiabilidadResultLabel.setText("");
+    	fiabilidadResultLabel2.setText("");
+    	eficienciaResultLabel.setText("");
+    	resultLabel.setText("");
+	}
+	
 	/**
 	 * Método que valida que todos los componentes se encuentren en el FXML.
 	 */
