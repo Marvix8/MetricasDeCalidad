@@ -21,8 +21,12 @@ public class Principal extends Application {
 			root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
 			Scene scene = new Scene(root, 800, 600);
 			
+			primaryStage.setMaximized(true);;
 			primaryStage.setScene(scene);
+						
 			primaryStage.show();
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
