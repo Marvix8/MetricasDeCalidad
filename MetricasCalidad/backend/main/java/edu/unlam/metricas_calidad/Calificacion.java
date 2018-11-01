@@ -1,6 +1,6 @@
 package edu.unlam.metricas_calidad;
 
-public enum CapacidadDeSerOperado {
+public enum Calificacion {
 	
 	MALO,
 	REGULAR,

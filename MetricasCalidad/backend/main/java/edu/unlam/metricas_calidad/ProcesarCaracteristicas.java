@@ -19,14 +19,17 @@ public class ProcesarCaracteristicas {
 	
 	public static final double MEJOR_CALIFICACION = 3;
 
-	
 	public static double calcularCalidad(Caracteristicas caracteristicas) {
 		
 		double valorAlcanzado = calcularValorAlcanzado(caracteristicas);
 		
 		double valorMaximo = calcularValorMaximo(caracteristicas);
 		
-		return (valorAlcanzado/valorMaximo) * 100;
+		double resultado = (valorAlcanzado/valorMaximo) * 100; 
+		
+		calificacionCaracteristica(caracteristicas, resultado);
+		
+		return resultado;
 	}
 	
 	
@@ -145,10 +148,10 @@ public class ProcesarCaracteristicas {
 		
 		if(caracteristicas.getCapacidadDeSerOperado() != null) {
 			
-			if(caracteristicas.getCapacidadDeSerOperado() == CapacidadDeSerOperado.BUENO) {
+			if(caracteristicas.getCapacidadDeSerOperado() == Calificacion.BUENO) {
 				valor +=3;
 			}
-			else if(caracteristicas.getCapacidadDeSerOperado() == CapacidadDeSerOperado.REGULAR) {
+			else if(caracteristicas.getCapacidadDeSerOperado() == Calificacion.REGULAR) {
 				valor += 2;
 			}
 			else {
@@ -211,6 +214,30 @@ public class ProcesarCaracteristicas {
 		else {
 			return 1;
 		}
+	}
+	
+	private static void calificacionCaracteristica(Caracteristicas caracteristicas, Double resultado) {
+		
+		// Se califica toda la aplicación en función del resultado.
+		if	(resultado >= 70.00) {
+			caracteristicas.setResultadoFinal(Calificacion.BUENO);
+		} else if (resultado <= 40.00) {
+			caracteristicas.setResultadoFinal(Calificacion.MALO);
+		} else {
+			caracteristicas.setResultadoFinal(Calificacion.REGULAR);
+		}
+		
+		// Se califica la característica Funcionalidad.
+		if(caracteristicas.getEncriptacionDatos() == true 
+				&& caracteristicas.getInicioSesionUsuarios() == true) {
+			caracteristicas.setFuncionalidad(Calificacion.BUENO);
+		} else if (caracteristicas.getEncriptacionDatos() == true 
+				|| caracteristicas.getInicioSesionUsuarios() == true) {
+			caracteristicas.setFuncionalidad(Calificacion.REGULAR);
+		} else {
+			caracteristicas.setFuncionalidad(Calificacion.MALO);
+		}
+		
 	}
 
 }

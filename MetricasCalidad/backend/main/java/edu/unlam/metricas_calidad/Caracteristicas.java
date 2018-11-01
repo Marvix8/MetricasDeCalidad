@@ -15,32 +15,49 @@ public class Caracteristicas {
 	private Double complejidadCiclomatica;
 	private Boolean ayduaContextual;
 	private Boolean manualUsuarioIncorporado;
-	private CapacidadDeSerOperado capacidadDeSerOperado;
+	private Calificacion capacidadDeSerOperado;
 	private Double cantSOCompatibles;
 	private Double cantPasosInstalacion;
 	
+	/*
+	 * Calificación de cada una de las Características Analizadas
+	 */
+	private Calificacion funcionalidad;
+	private Calificacion eficiencia;
+	private Calificacion fiabilidad;
+	private Calificacion mantenibilidad;
+	private Calificacion usabilidad;
+	private Calificacion portabilidad;
+	private Calificacion resultadoFinal;
 	
 	public Boolean getEncriptacionDatos() {
 		return encriptacionDatos;
 	}
+	
 	public void setEncriptacionDatos(Boolean encriptacionDatos) {
 		this.encriptacionDatos = encriptacionDatos;
 	}
+	
 	public Boolean getInicioSesionUsuarios() {
 		return inicioSesionUsuarios;
 	}
+	
 	public void setInicioSesionUsuarios(Boolean inicioSesionUsuarios) {
 		this.inicioSesionUsuarios = inicioSesionUsuarios;
 	}
+	
 	public Double getOrdenError() {
 		return ordenError;
 	}
+	
 	public void setOrdenError(Double ordenError) {
 		this.ordenError = ordenError;
 	}
+	
 	public Double getUsoProcesador() {
 		return usoProcesador;
 	}
+	
 	public void setUsoProcesador(Double usoProcesador) throws CaracteristicaException {
 		
 		if(usoProcesador < 0 || usoProcesador > 100) {
@@ -48,9 +65,11 @@ public class Caracteristicas {
 		}
 		this.usoProcesador = usoProcesador;
 	}
+	
 	public Double getTiempoSinInformarEstado() {
 		return tiempoSinInformarEstado;
 	}
+	
 	public void setTiempoSinInformarEstado(Double tiempoSinInformarEstado) throws CaracteristicaException {
 		
 		if(tiempoSinInformarEstado <= 0) {
@@ -58,33 +77,43 @@ public class Caracteristicas {
 		}
 		this.tiempoSinInformarEstado = tiempoSinInformarEstado;
 	}
+	
 	public Boolean getProteccionDatosProcesados() {
 		return proteccionDatosProcesados;
 	}
+	
 	public void setProteccionDatosProcesados(Boolean proteccionDatosProcesados) {
 		this.proteccionDatosProcesados = proteccionDatosProcesados;
 	}
+	
 	public Boolean getLogActividades() {
 		return logActividades;
 	}
+	
 	public void setLogActividades(Boolean logActividades) {
 		this.logActividades = logActividades;
 	}
+	
 	public Boolean getReanudarActividadAnteFalla() {
 		return reanudarActividadAnteFalla;
 	}
+	
 	public void setReanudarActividadAnteFalla(Boolean reanudarActividadAnteFalla) {
 		this.reanudarActividadAnteFalla = reanudarActividadAnteFalla;
 	}
+	
 	public Boolean getReanudarEnEstadoAnterior() {
 		return reanudarEnEstadoAnterior;
 	}
+	
 	public void setReanudarEnEstadoAnterior(Boolean reanudarEnEstadoAnterior) {
 		this.reanudarEnEstadoAnterior = reanudarEnEstadoAnterior;
 	}
+	
 	public Double getPorcentajeComentariosPorMetodo() {
 		return porcentajeComentariosPorMetodo;
 	}
+	
 	public void setPorcentajeComentariosPorMetodo(Double porcentajeComentariosPorMetodo) throws CaracteristicaException {
 		
 		if(porcentajeComentariosPorMetodo < 0 || porcentajeComentariosPorMetodo > 100) {
@@ -92,9 +121,11 @@ public class Caracteristicas {
 		}
 		this.porcentajeComentariosPorMetodo = porcentajeComentariosPorMetodo;
 	}
+	
 	public Double getComplejidadCiclomatica() {
 		return complejidadCiclomatica;
 	}
+	
 	public void setComplejidadCiclomatica(Double complejidadCiclomatica) throws CaracteristicaException {
 		
 		if(complejidadCiclomatica <= 0) {
@@ -102,27 +133,35 @@ public class Caracteristicas {
 		}
 		this.complejidadCiclomatica = complejidadCiclomatica;
 	}
+	
 	public Boolean getAyduaContextual() {
 		return ayduaContextual;
 	}
+	
 	public void setAyduaContextual(Boolean ayduaContextual) {
 		this.ayduaContextual = ayduaContextual;
 	}
+	
 	public Boolean getManualUsuarioIncorporado() {
 		return manualUsuarioIncorporado;
 	}
+	
 	public void setManualUsuarioIncorporado(Boolean manualUsuarioIncorporado) {
 		this.manualUsuarioIncorporado = manualUsuarioIncorporado;
 	}
-	public CapacidadDeSerOperado getCapacidadDeSerOperado() {
+	
+	public Calificacion getCapacidadDeSerOperado() {
 		return capacidadDeSerOperado;
 	}
-	public void setCapacidadDeSerOperado(CapacidadDeSerOperado capacidadDeSerOperado) {
+	
+	public void setCapacidadDeSerOperado(Calificacion capacidadDeSerOperado) {
 		this.capacidadDeSerOperado = capacidadDeSerOperado;
 	}
+	
 	public Double getCantSOCompatibles() {
 		return cantSOCompatibles;
 	}
+	
 	public void setCantSOCompatibles(Double cantSOCompatibles) throws CaracteristicaException {
 		
 		if(cantSOCompatibles <= 0) {
@@ -130,9 +169,11 @@ public class Caracteristicas {
 		}
 		this.cantSOCompatibles = cantSOCompatibles;
 	}
+	
 	public Double getCantPasosInstalacion() {
 		return cantPasosInstalacion;
 	}
+	
 	public void setCantPasosInstalacion(Double cantPasosInstalacion) throws CaracteristicaException {
 		
 		if(cantPasosInstalacion <= 0) {
@@ -141,4 +182,60 @@ public class Caracteristicas {
 		this.cantPasosInstalacion = cantPasosInstalacion;
 	}
 
+	public Calificacion getFuncionalidad() {
+		return funcionalidad;
+	}
+
+	public void setFuncionalidad(Calificacion funcionalidad) {
+		this.funcionalidad = funcionalidad;
+	}
+
+	public Calificacion getEficiencia() {
+		return eficiencia;
+	}
+
+	public void setEficiencia(Calificacion eficiencia) {
+		this.eficiencia = eficiencia;
+	}
+
+	public Calificacion getFiabilidad() {
+		return fiabilidad;
+	}
+
+	public void setFiabilidad(Calificacion fiabilidad) {
+		this.fiabilidad = fiabilidad;
+	}
+
+	public Calificacion getMantenibilidad() {
+		return mantenibilidad;
+	}
+
+	public void setMantenibilidad(Calificacion mantenibilidad) {
+		this.mantenibilidad = mantenibilidad;
+	}
+
+	public Calificacion getUsabilidad() {
+		return usabilidad;
+	}
+
+	public void setUsabilidad(Calificacion usabilidad) {
+		this.usabilidad = usabilidad;
+	}
+
+	public Calificacion getPortabilidad() {
+		return portabilidad;
+	}
+
+	public void setPortabilidad(Calificacion portabilidad) {
+		this.portabilidad = portabilidad;
+	}
+
+	public Calificacion getResultadoFinal() {
+		return resultadoFinal;
+	}
+
+	public void setResultadoFinal(Calificacion resultadoFinal) {
+		this.resultadoFinal = resultadoFinal;
+	}
+	
 }

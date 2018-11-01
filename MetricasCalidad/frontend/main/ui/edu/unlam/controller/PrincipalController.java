@@ -1,19 +1,16 @@
 package edu.unlam.controller;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
-import javax.xml.datatype.Duration;
-
-import edu.unlam.metricas_calidad.CapacidadDeSerOperado;
+import edu.unlam.metricas_calidad.Calificacion;
 import edu.unlam.metricas_calidad.CaracteristicaException;
 import edu.unlam.metricas_calidad.Caracteristicas;
 import edu.unlam.metricas_calidad.ProcesarCaracteristicas;
-import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -118,6 +115,45 @@ public class PrincipalController implements Initializable{
 	// Objeto Característica
 	Caracteristicas caracteristicas;
 	
+	// PseudoClass usada para marcar con rojo lo que está mal ingresado.
+	final private PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+	
+	
+	// PseudoClass usadas para setear color de resultLabel según el obtenido.
+	final private PseudoClass buenoClass = PseudoClass.getPseudoClass("bueno");
+	final private PseudoClass regularClass = PseudoClass.getPseudoClass("regular");
+	final private PseudoClass maloClass = PseudoClass.getPseudoClass("malo");
+
+	// Array con todos los ComboBoxes
+	final private ComboBox[] allComboBoxes = {	encriptacionDatosCombo,
+												ayudaCombo,
+												datosProcesadosCombo,
+												capacidadSerOperadoCombo,
+												fallaCriticaCombo,
+												iniciarSesionCombo,
+												manualUsuarioCombo,
+												logCombo,
+												estadoAnteriorCombo };
+	
+	// Array con todos los TextFields
+	final private TextField[] allTextFields = { complejidadCiclomaticaTextField,
+												comportamientoFrenteTiempoTextField,
+												exactitudResultadosTextField,
+												intalacionTextField,
+												multiSOTextField,
+												porcentajeComentariosTextField,
+												utilizacionRecursosTextField };
+	
+	// Array con todos los Labels
+	final private Label[] allLabels = {	resultLabel, 
+										funcionalidadResultLabel, 
+										eficienciaResultLabel, 
+										fiabilidadResultLabel, 
+										fiabilidadResultLabel2, 
+										mantenibilidadResultLabel, 
+										usabilidadResultFLabel, 
+										portabilidadResultLabel };
+	
 	// Listado usado para popular combos con valor SI o NO
 	ObservableList<String> ListaSiNo = FXCollections.observableArrayList("SI","NO");
 	
@@ -136,7 +172,7 @@ public class PrincipalController implements Initializable{
 		validarComponentes();
 		// Populo los combos.
 		popularCombos();
-
+		
 		caracteristicas = new Caracteristicas();
 		
 		encriptacionDatosCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -223,11 +259,11 @@ public class PrincipalController implements Initializable{
 			@Override 
 			public void changed(ObservableValue<? extends String> selected, String oldValue, String newValue) {
 				if (capacidadSerOperadoCombo.getValue().equals("Se Consulta a Personal Especializado")) {
-					caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.MALO);
+					caracteristicas.setCapacidadDeSerOperado(Calificacion.MALO);
 				} else if (capacidadSerOperadoCombo.getValue().equals("Se Requiere Manual de Usuario")) {
-					caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.REGULAR);
+					caracteristicas.setCapacidadDeSerOperado(Calificacion.REGULAR);
 				} else if (capacidadSerOperadoCombo.getValue().equals("Se Opera Sin Asistencia")) {
-					caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.BUENO);
+					caracteristicas.setCapacidadDeSerOperado(Calificacion.BUENO);
 				}
 			}
 	    });
@@ -236,9 +272,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setComplejidadCiclomatica(Double.parseDouble(newValue));
 				} catch (NumberFormatException | CaracteristicaException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -248,9 +285,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setTiempoSinInformarEstado(Double.parseDouble(newValue));
 				} catch (NumberFormatException | CaracteristicaException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -260,9 +298,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setOrdenError(Double.parseDouble(newValue));
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -272,9 +311,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setCantPasosInstalacion(Double.parseDouble(newValue));
 				} catch (NumberFormatException | CaracteristicaException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -284,9 +324,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setCantSOCompatibles(Double.parseDouble(newValue));
 				} catch (NumberFormatException | CaracteristicaException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -296,9 +337,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setPorcentajeComentariosPorMetodo(Double.parseDouble(newValue));
 				} catch (NumberFormatException | CaracteristicaException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -308,9 +350,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	try {
+		    		utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, false);
 					caracteristicas.setUsoProcesador(Double.parseDouble(newValue));
 				} catch (NumberFormatException | CaracteristicaException e) {
-					// TODO Auto-generated catch block
+					utilizacionRecursosTextField.pseudoClassStateChanged(errorClass, true);
 					e.printStackTrace();
 				} 
 		    }
@@ -319,22 +362,25 @@ public class PrincipalController implements Initializable{
 		procesarButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-        		double calidad = ProcesarCaracteristicas.calcularCalidad(caracteristicas);
-        		if(calidad > -1) {
-        			DecimalFormat df = new DecimalFormat("0.00");
-            		String resultado = df.format(calidad);
-            		
-            		resultLabel.setText(resultado);	
-        		}
+        		ProcesarCaracteristicas.calcularCalidad(caracteristicas);
         		
+        		String resultado = caracteristicas.getResultadoFinal().toString();
+        		String funcionalidad = caracteristicas.getFuncionalidad().toString();
+        		if(camposCargados()) {
+        			mostrarResultado(resultado, resultLabel);
+        			mostrarResultado(funcionalidad, funcionalidadResultLabel);
+            		
+        		}
             }
+            
+            
         });
 		
 		limpiarButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
             	caracteristicas = new Caracteristicas();
-            	limpiarCampos();
+            	reiniciarValorCampos();
             }
         });
 		
@@ -358,31 +404,53 @@ public class PrincipalController implements Initializable{
 	/*
 	 * Método utilizado para limpiar los campos.
 	 */
-	private void limpiarCampos() {
-		encriptacionDatosCombo.setValue("Seleccione un Valor");
-    	ayudaCombo.setValue("Seleccione un Valor");
-    	datosProcesadosCombo.setValue("Seleccione un Valor");
-    	capacidadSerOperadoCombo.setValue("Seleccione un Valor");
-    	fallaCriticaCombo.setValue("Seleccione un Valor");
-    	iniciarSesionCombo.setValue("Seleccione un Valor");
-    	manualUsuarioCombo.setValue("Seleccione un Valor");
-    	logCombo.setValue("Seleccione un Valor");
-    	estadoAnteriorCombo.setValue("Seleccione un Valor");
-    	complejidadCiclomaticaTextField.setText("");
-    	comportamientoFrenteTiempoTextField.setText("");
-    	exactitudResultadosTextField.setText("");
-    	intalacionTextField.setText("");
-    	multiSOTextField.setText("");
-    	porcentajeComentariosTextField.setText("");
-    	utilizacionRecursosTextField.setText("");
-    	usabilidadResultFLabel.setText("");
-    	portabilidadResultLabel.setText("");
-    	mantenibilidadResultLabel.setText("");
-    	funcionalidadResultLabel.setText("");
-    	fiabilidadResultLabel.setText("");
-    	fiabilidadResultLabel2.setText("");
-    	eficienciaResultLabel.setText("");
-    	resultLabel.setText("");
+	@SuppressWarnings("unchecked")
+	private void reiniciarValorCampos() {		
+		for (ComboBox<String> comboBox : allComboBoxes) {
+			comboBox.setValue("Seleccione un Valor");
+			comboBox.pseudoClassStateChanged(errorClass, false);
+    	};
+		
+		for (TextField textField : allTextFields) {
+			textField.setText("Seleccione un Valor");
+			textField.pseudoClassStateChanged(errorClass, false);
+    	};
+    	    	
+    	for (Label label : allLabels) {
+    		label.setText("");
+    		label.pseudoClassStateChanged(buenoClass, false);
+    		label.pseudoClassStateChanged(regularClass, false);
+    		label.pseudoClassStateChanged(maloClass, false);	
+    	}
+		
+	}
+	
+	/*
+	 * Método utilizado para validar si todos los campos fueron completados.
+	 */
+	private boolean camposCargados() {
+		
+		
+		
+		return true;
+	}
+	
+	/*
+	 * Muestra el resultado obtenido de la caracteristica enviada en el Label enviado.
+	 */
+	private void mostrarResultado(String resultado, Label label) {
+		label.pseudoClassStateChanged(buenoClass, false);
+		label.pseudoClassStateChanged(regularClass, false);
+		label.pseudoClassStateChanged(maloClass, false);
+		
+		label.setText(resultado);
+		if (resultado.equals("BUENO")) {
+			label.pseudoClassStateChanged(buenoClass, true);
+		} else if (resultado.equals("REGULAR")) {
+			label.pseudoClassStateChanged(regularClass, true);
+		} else if (resultado.equals("MALO")) {
+			label.pseudoClassStateChanged(maloClass, true);
+		}
 	}
 	
 	/**

@@ -220,11 +220,11 @@ public class InterfazDeMetricasEnConsola {
 						calificacion = ingresoValor(mensaje);
 						
 						if(calificacion == 1) {
-							caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.MALO);
+							caracteristicas.setCapacidadDeSerOperado(Calificacion.MALO);
 						}else if(calificacion == 2) {
-							caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.REGULAR);
+							caracteristicas.setCapacidadDeSerOperado(Calificacion.REGULAR);
 						}else if(calificacion == 3){
-							caracteristicas.setCapacidadDeSerOperado(CapacidadDeSerOperado.BUENO);
+							caracteristicas.setCapacidadDeSerOperado(Calificacion.BUENO);
 						}else {
 							System.out.println("El valor ingresado no es correcto\n");
 						}

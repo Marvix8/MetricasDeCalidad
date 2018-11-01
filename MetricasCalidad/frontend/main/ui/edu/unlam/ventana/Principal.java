@@ -1,5 +1,6 @@
 package edu.unlam.ventana;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -18,14 +19,17 @@ public class Principal extends Application {
 	public void start(Stage primaryStage) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
+			File css = new File("frontend/resources/css/principal.css");
+			File principalFxml = new File("frontend/resources/fxml/Principal.fxml");
+			root = FXMLLoader.load(principalFxml.toURI().toURL());
 			Scene scene = new Scene(root, 800, 600);
-			
+			scene.getStylesheets().add(css.toURI().toURL().toString()); 
+
+			primaryStage.setTitle("Métricas de Calidad");
 			primaryStage.setMaximized(true);;
 			primaryStage.setScene(scene);
 						
 			primaryStage.show();
-			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

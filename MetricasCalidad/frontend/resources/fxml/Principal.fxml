@@ -331,8 +331,8 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Button fx:id="procesarButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-background-color: #3385ff; -fx-background-radius: 22;" stylesheets="@../../../../../resources/css/principal.css" text="PROCESAR" textFill="WHITE" />
-                                                <Button fx:id="limpiarButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-background-color: #ff6600;" stylesheets="@../../../../../resources/css/principal.css" text="LIMPIAR" textFill="WHITE" GridPane.columnIndex="1" />
+                                                <Button fx:id="procesarButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-background-color: #3385ff;" text="PROCESAR" textFill="WHITE" />
+                                                <Button fx:id="limpiarButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-background-color: #ff6600;" text="LIMPIAR" textFill="WHITE" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
