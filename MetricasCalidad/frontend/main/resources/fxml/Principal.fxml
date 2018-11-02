@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -70,7 +71,11 @@
                                                   </rowConstraints>
                                                    <children>
                                                       <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #ff8080;" text="Exactitud de los Resultados" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                                                      <TextField fx:id="exactitudResultadosTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="exactitudResultadosCombo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Seleccione un Valor" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip fx:id="exactitudResultadosToolTip" text="Orden del error de los resultados" />
+                                                         </tooltip>
+                                                      </ComboBox>
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2">
@@ -107,7 +112,10 @@
                                                    <children>
                                                       <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-background-color: #00b33c; -fx-font-weight: bold;" text="Utilización de Recursos" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                                                       <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="utilizacionRecursosTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="utilizacionRecursosTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip fx:id="utilizacionRecursosToolTip" text="\% de uso de un procesador AMD A6 6400k" width="50.0" />
+                                                         </tooltip></TextField>
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -121,7 +129,10 @@
                                                    <children>
                                                       <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-weight: bold; -fx-alignment: center; -fx-background-color: #00cc44;" text="Comportamiento Frente al Tiempo" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                                                       <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="comportamientoFrenteTiempoTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="comportamientoFrenteTiempoTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip fx:id="comportamientoFrenteTiempoToolTip" text="Tiempo sin informar estado de una solicitud en segundos" />
+                                                         </tooltip></TextField>
                                                    </children>
                                                 </GridPane>
                                                 <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16; -fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #009999;" text="Mantenibilidad" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4" />
@@ -216,7 +227,7 @@
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #0039e6;" text="Posee ayuda contextual sobre menús y botones de acción." textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #0039e6;" text="Posee ayuda contextual sobre menús y botones de acción" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                                                       <ComboBox fx:id="ayudaCombo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Seleccione un Valor" GridPane.rowIndex="1" />
                                                    </children>
                                                 </GridPane>
@@ -252,7 +263,10 @@
                                                   </rowConstraints>
                                                    <children>
                                                       <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #1a53ff;" text="Capacidad de Ser Operado" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                                                      <ComboBox fx:id="capacidadSerOperadoCombo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Seleccione un Valor" GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="capacidadSerOperadoCombo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Seleccione un Valor" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip fx:id="capacidadSerOperadoToolTip" text="Se evalúa qué requiere el usuario para operar correctamente el producto" />
+                                                         </tooltip></ComboBox>
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -265,7 +279,10 @@
                                                   </rowConstraints>
                                                    <children>
                                                       <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #751aff;" text="Capacidad de adaptarse a diferentes SO sin cambiar su estructura interna" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                                                      <TextField fx:id="multiSOTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="multiSOTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+                                                         <tooltip>
+                                                            <Tooltip fx:id="multiSOToolTip" text="Capacidad del producto software de adaptarse a diferentes sistemas operativos sin cambiar su estructura interna" />
+                                                         </tooltip></TextField>
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
@@ -301,7 +318,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <GridPane>
+                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="66.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -325,7 +342,7 @@
                                                       <RowConstraints />
                                                    </rowConstraints>
                                                    <children>
-                                                      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" GridPane.rowIndex="3">
+                                                      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="120.0" prefWidth="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                                         <columnConstraints>
                                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -334,13 +351,13 @@
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Label fx:id="utilizacionRecursosResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-size: 12; -fx-font-weight: bold;" />
-                                                            <Label fx:id="comportamienteFrenteTiempoResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-alignment: center;" GridPane.columnIndex="1" />
+                                                            <Label fx:id="utilizacionRecursosResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="159.0" prefWidth="120.0" style="-fx-alignment: center; -fx-font-size: 12; -fx-font-weight: bold;" GridPane.halignment="CENTER" />
+                                                            <Label fx:id="comportamienteFrenteTiempoResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="159.0" prefWidth="120.0" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-alignment: center;" GridPane.columnIndex="1" />
                                                          </children>
                                                       </GridPane>
                                                    </children>
                                                 </GridPane>
-                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="116.0" GridPane.rowIndex="2">
+                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                   </columnConstraints>
@@ -349,10 +366,10 @@
                                                       <RowConstraints maxHeight="1.7976931348623157E308" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Label fx:id="toleranciaFallosResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="116.0" style="-fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" GridPane.rowIndex="1" />
+                                                      <Label fx:id="toleranciaFallosResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="159.0" prefWidth="116.0" style="-fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
                                                    </children>
                                                 </GridPane>
-                                                <GridPane GridPane.rowIndex="5">
+                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="5">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="66.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -366,7 +383,7 @@
                                                    </children>
                                                 </GridPane>
                                                 <Label fx:id="capacidadRecuperacionErroresResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-size: 12; -fx-font-weight: bold;" GridPane.rowIndex="3" />
-                                                <GridPane GridPane.rowIndex="4">
+                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="4">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -379,7 +396,7 @@
                                                       <Label fx:id="capacidadCodigoSerCambiadoResultLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-alignment: center;" GridPane.columnIndex="1" />
                                                    </children>
                                                 </GridPane>
-                                                <GridPane GridPane.rowIndex="6">
+                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="6">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -423,7 +440,10 @@
                                     </AnchorPane>
                                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
                                        <children>
-                                          <Label fx:id="resultLabel" layoutX="44.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="resultLabel" layoutX="44.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <tooltip>
+                                                <Tooltip fx:id="resultadoToolTip" text="Resultado del Análisis Realizado" />
+                                             </tooltip></Label>
                                        </children>
                                     </AnchorPane>
                                 </items>

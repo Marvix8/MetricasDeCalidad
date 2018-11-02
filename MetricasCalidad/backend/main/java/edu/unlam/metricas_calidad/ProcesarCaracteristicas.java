@@ -40,7 +40,7 @@ public class ProcesarCaracteristicas {
 			cantidadCaracteristicas ++;
 		}
 		
-		if(caracteristicas.getOrdenError() != null) {
+		if(caracteristicas.getExactitudResultados() != null) {
 			cantidadCaracteristicas ++;
 		}
 		
@@ -97,10 +97,17 @@ public class ProcesarCaracteristicas {
 
 		}
 		
-		if(caracteristicas.getOrdenError() != null) {
+		if(caracteristicas.getExactitudResultados() != null) {
 			
-			valor += medirCaracteristicaEnIntervalo(caracteristicas.getOrdenError(), LIMITE_SUP_ORDEN_ERROR, LIMITE_INF_ORDEN_ERROR, false);
-			
+			if(caracteristicas.getExactitudResultados() == Calificacion.BUENO) {
+				valor +=3;
+			}
+			else if(caracteristicas.getExactitudResultados() == Calificacion.REGULAR) {
+				valor += 2;
+			}
+			else {
+				valor ++;
+			}
 		}
 		
 		if(caracteristicas.getUsoProcesador() != null) {
@@ -230,13 +237,8 @@ public class ProcesarCaracteristicas {
 		}		
 
 		// Se califica la característica Exactitud de los Resultados.
-		if (caracteristicas.getOrdenError() >= -3) {
-			caracteristicas.setExactitudResultados(Calificacion.MALO);
+		if (caracteristicas.getExactitudResultados().equals(Calificacion.MALO)) {
 			cantidadMalos ++;
-		} else if (caracteristicas.getOrdenError() <= -7) {
-			caracteristicas.setExactitudResultados(Calificacion.BUENO);
-		} else {
-			caracteristicas.setExactitudResultados(Calificacion.REGULAR);
 		}
 		
 		// Se califica la característica Utilización de Recursos.
@@ -291,12 +293,12 @@ public class ProcesarCaracteristicas {
 		
 		// Se califica la característica Capacidad del Código de ser Cambiado.
 		if (caracteristicas.getComplejidadCiclomatica() >= 20) {
-			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.MALO);
+			caracteristicas.setCapacidadDeSerCambiado(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getPorcentajeComentariosPorMetodo() <= 10) {
-			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.BUENO);
+		} else if (caracteristicas.getComplejidadCiclomatica() <= 10) {
+			caracteristicas.setCapacidadDeSerCambiado(Calificacion.BUENO);
 		} else {
-			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.REGULAR);
+			caracteristicas.setCapacidadDeSerCambiado(Calificacion.REGULAR);
 		}		
 		
 		// Se califica la característica Capacidad de ser Entendido.
@@ -326,12 +328,12 @@ public class ProcesarCaracteristicas {
 		
 		// Se califica la característica Instalabilidad.
 		if (caracteristicas.getCantPasosInstalacion() >= 7) {
-			caracteristicas.setAdaptabilidad(Calificacion.MALO);
+			caracteristicas.setInstalabilidad(Calificacion.MALO);
 			cantidadMalos ++;
 		} else if (caracteristicas.getCantPasosInstalacion() <= 3) {
-			caracteristicas.setAdaptabilidad(Calificacion.BUENO);
+			caracteristicas.setInstalabilidad(Calificacion.BUENO);
 		} else {
-			caracteristicas.setAdaptabilidad(Calificacion.REGULAR);
+			caracteristicas.setInstalabilidad(Calificacion.REGULAR);
 		}	
 		
 		// Se califica toda la aplicación en función del resultado.

@@ -1,7 +1,20 @@
+.text-field:hover {
+	-fx-tooltip-visible: true ;	
+}
+
 .text-field:error {
 	-fx-border-color: red ;
 	-fx-border-width: 2.5px ;
 }
+
+.combo-box:hover {
+	-fx-tooltip-visible: true ;
+}
+
+.combo-box:pressed {
+	-fx-tooltip-visible: true ;
+}
+
 
 .combo-box:error {
 	-fx-border-color: red ;

@@ -1,16 +1,21 @@
 package edu.unlam.ventana;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Principal extends Application {
 
+	final String css = "/css/principal.css";
+	final String principalIconImage = "/images/iconoPrincipal.png";
+	final String principalFxml = "/fxml/Principal.fxml";
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -19,13 +24,15 @@ public class Principal extends Application {
 	public void start(Stage primaryStage) {
 		Parent root;
 		try {
-			File css = new File("frontend/resources/css/principal.css");
-			File principalFxml = new File("frontend/resources/fxml/Principal.fxml");
-			root = FXMLLoader.load(principalFxml.toURI().toURL());
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(principalFxml));
+			root = loader.load();
+			
 			Scene scene = new Scene(root, 800, 600);
-			scene.getStylesheets().add(css.toURI().toURL().toString()); 
+			scene.getStylesheets().add(css); 
 
 			primaryStage.setTitle("Métricas de Calidad");
+			primaryStage.getIcons().add(new Image(principalIconImage));
 			primaryStage.setMaximized(true);;
 			primaryStage.setScene(scene);
 						

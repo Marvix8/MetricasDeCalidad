@@ -4,7 +4,6 @@ public class Caracteristicas {
 	
 	private Boolean encriptacionDatos;
 	private Boolean inicioSesionUsuarios;
-	private Double ordenError;
 	private Double usoProcesador;
 	private Double tiempoSinInformarEstado;
 	private Boolean proteccionDatosProcesados;
@@ -50,14 +49,6 @@ public class Caracteristicas {
 	
 	public void setInicioSesionUsuarios(Boolean inicioSesionUsuarios) {
 		this.inicioSesionUsuarios = inicioSesionUsuarios;
-	}
-	
-	public Double getOrdenError() {
-		return ordenError;
-	}
-	
-	public void setOrdenError(Double ordenError) {
-		this.ordenError = ordenError;
 	}
 	
 	public Double getUsoProcesador() {
