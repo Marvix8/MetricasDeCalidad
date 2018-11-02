@@ -88,30 +88,46 @@ public class PrincipalController implements Initializable{
 	/*
 	 * Principal's Label 
 	 */	
-	@FXML // fx:id="usabilidadResultFLabel"
-	private Label usabilidadResultFLabel;
+	@FXML // fx:id="adaptabilidadResultLabel"
+	private Label adaptabilidadResultLabel;
 	
 	@FXML // fx:id="resultLabel"
 	private Label resultLabel;
 	
-	@FXML // fx:id="portabilidadResultLabel"
-	private Label portabilidadResultLabel;
+	@FXML // fx:id="utilizacionRecursosResultLabel"
+	private Label utilizacionRecursosResultLabel;
 	
-	@FXML // fx:id="mantenibilidadResultLabel"
-	private Label mantenibilidadResultLabel;
+	@FXML // fx:id="toleranciaFallosResultLabel"
+	private Label toleranciaFallosResultLabel;
 	
-	@FXML // fx:id="funcionalidadResultLabel"
-	private Label funcionalidadResultLabel;
+	@FXML // fx:id="seguridadAccesoResultLabel"
+	private Label seguridadAccesoResultLabel;
 	
-	@FXML // fx:id="fiabilidadResultLabel"
-	private Label fiabilidadResultLabel;
+	@FXML // fx:id="instalabilidadResultLabel"
+	private Label instalabilidadResultLabel;
 	
-	@FXML // fx:id="fiabilidadResultLabel2"
-	private Label fiabilidadResultLabel2;
+	@FXML // fx:id="exactitudResultadosResultLabel"
+	private Label exactitudResultadosResultLabel;
 	
-	@FXML // fx:id="eficienciaResultLabel"
-	private Label eficienciaResultLabel;
+	@FXML // fx:id="comportamienteFrenteTiempoResultLabel"
+	private Label comportamienteFrenteTiempoResultLabel;
 	
+	@FXML // fx:id="capacidadSerOperadoResultLabel"
+	private Label capacidadSerOperadoResultLabel;
+	
+	@FXML // fx:id="capacidadSerEntendidoResultLabel"
+	private Label capacidadSerEntendidoResultLabel;
+	
+	@FXML // fx:id="capacidadRecuperacionErroresResultLabel"
+	private Label capacidadRecuperacionErroresResultLabel;
+	
+	@FXML // fx:id="capacidadCodigoSerCambiadoResultLabel"
+	private Label capacidadCodigoSerCambiadoResultLabel;
+	
+	@FXML // fx:id="capacidadCodigoSerAnalizadoResultLabel"
+	private Label capacidadCodigoSerAnalizadoResultLabel;
+	
+
 	// Objeto Característica
 	Caracteristicas caracteristicas;
 	
@@ -146,13 +162,18 @@ public class PrincipalController implements Initializable{
 	
 	// Array con todos los Labels
 	final private Label[] allLabels = {	resultLabel, 
-										funcionalidadResultLabel, 
-										eficienciaResultLabel, 
-										fiabilidadResultLabel, 
-										fiabilidadResultLabel2, 
-										mantenibilidadResultLabel, 
-										usabilidadResultFLabel, 
-										portabilidadResultLabel };
+										seguridadAccesoResultLabel, 
+										comportamienteFrenteTiempoResultLabel, 
+										instalabilidadResultLabel, 
+										exactitudResultadosResultLabel, 
+										toleranciaFallosResultLabel, 
+										adaptabilidadResultLabel, 
+										utilizacionRecursosResultLabel,
+										capacidadSerOperadoResultLabel,
+										capacidadSerEntendidoResultLabel,
+										capacidadRecuperacionErroresResultLabel,
+										capacidadCodigoSerCambiadoResultLabel,
+										capacidadCodigoSerAnalizadoResultLabel };
 	
 	// Listado usado para popular combos con valor SI o NO
 	ObservableList<String> ListaSiNo = FXCollections.observableArrayList("SI","NO");
@@ -188,9 +209,9 @@ public class PrincipalController implements Initializable{
 		ayudaCombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override public void changed(ObservableValue<? extends String> selected, String oldValue, String newValue) {
 				if (ayudaCombo.getValue().equals("SI")) {
-					caracteristicas.setAyduaContextual(true);;
+					caracteristicas.setAyudaContextual(true);;
 				} else if (ayudaCombo.getValue().equals("NO")) {
-					caracteristicas.setAyduaContextual(false);
+					caracteristicas.setAyudaContextual(false);
 				}
 			}
 	    });
@@ -362,14 +383,26 @@ public class PrincipalController implements Initializable{
 		procesarButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-        		ProcesarCaracteristicas.calcularCalidad(caracteristicas);
-        		
-        		String resultado = caracteristicas.getResultadoFinal().toString();
-        		String funcionalidad = caracteristicas.getFuncionalidad().toString();
         		if(camposCargados()) {
-        			mostrarResultado(resultado, resultLabel);
-        			mostrarResultado(funcionalidad, funcionalidadResultLabel);
+        			ProcesarCaracteristicas.calcularCalidad(caracteristicas);
+        			
+        			// Muestro resultados
+        			mostrarResultado(caracteristicas.getSeguridadAcceso().toString(), seguridadAccesoResultLabel);
+        			mostrarResultado(caracteristicas.getExactitudResultados().toString(), exactitudResultadosResultLabel);
+        			mostrarResultado(caracteristicas.getUtilizacionRecursos().toString(), utilizacionRecursosResultLabel);
+        			mostrarResultado(caracteristicas.getComportamientoFrenteTiempo().toString(), comportamienteFrenteTiempoResultLabel);
+        			mostrarResultado(caracteristicas.getToleranciaFallos().toString(), toleranciaFallosResultLabel);
+        			mostrarResultado(caracteristicas.getCapacidadRecuperacionErrores().toString(), capacidadRecuperacionErroresResultLabel);
+        			mostrarResultado(caracteristicas.getCapacidadDeSerAnalizado().toString(), capacidadCodigoSerAnalizadoResultLabel);
+        			//mostrarResultado(caracteristicas.getCapacidadDeSerCambiado().toString(), capacidadCodigoSerCambiadoResultLabel);
+        			mostrarResultado(caracteristicas.getCapacidadDeSerEntendido().toString(), capacidadSerEntendidoResultLabel);
+        			mostrarResultado(caracteristicas.getCapacidadDeSerOperado().toString(), capacidadSerOperadoResultLabel);
+        			mostrarResultado(caracteristicas.getAdaptabilidad().toString(), adaptabilidadResultLabel);
+        			//mostrarResultado(caracteristicas.getInstalabilidad().toString(), instalabilidadResultLabel);
+        			mostrarResultado(caracteristicas.getResultadoFinal().toString(), resultLabel);
             		
+        		} else {
+        			// Insertar codigo que abre pop-up de error
         		}
             }
             
@@ -475,14 +508,19 @@ public class PrincipalController implements Initializable{
 		assert utilizacionRecursosTextField != null : "fx:id=\"utilizacionRecursosTextField\" was not injected: check your FXML file 'Principal.fxml'.";
 		assert procesarButton != null : "fx:id=\"procesarButton\" was not injected: check your FXML file 'Principal.fxml'.";
 		assert limpiarButton != null : "fx:id=\"limpiarButton\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert usabilidadResultFLabel != null : "fx:id=\"usabilidadResultFLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert adaptabilidadResultLabel != null : "fx:id=\"usabilidadResultFLabel\" was not injected: check your FXML file 'Principal.fxml'.";
 		assert resultLabel != null : "fx:id=\"resultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert portabilidadResultLabel != null : "fx:id=\"portabilidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert mantenibilidadResultLabel != null : "fx:id=\"mantenibilidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert funcionalidadResultLabel != null : "fx:id=\"funcionalidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert fiabilidadResultLabel != null : "fx:id=\"fiabilidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert fiabilidadResultLabel2 != null : "fx:id=\"fiabilidadResultLabel2\" was not injected: check your FXML file 'Principal.fxml'.";
-		assert eficienciaResultLabel != null : "fx:id=\"eficienciaResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert utilizacionRecursosResultLabel != null : "fx:id=\"portabilidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert toleranciaFallosResultLabel != null : "fx:id=\"mantenibilidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert seguridadAccesoResultLabel != null : "fx:id=\"funcionalidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert instalabilidadResultLabel != null : "fx:id=\"fiabilidadResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert exactitudResultadosResultLabel != null : "fx:id=\"fiabilidadResultLabel2\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert comportamienteFrenteTiempoResultLabel != null : "fx:id=\"eficienciaResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert capacidadSerOperadoResultLabel != null : "fx:id=\"capacidadSerOperadoResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert capacidadSerEntendidoResultLabel != null : "fx:id=\"capacidadSerEntendidoResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert capacidadRecuperacionErroresResultLabel != null : "fx:id=\"capacidadRecuperacionErroresResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+		assert capacidadCodigoSerAnalizadoResultLabel != null : "fx:id=\"capacidadCodigoSerAnalizadoResultLabel\" was not injected: check your FXML file 'Principal.fxml'.";
+
 	}
 
 }

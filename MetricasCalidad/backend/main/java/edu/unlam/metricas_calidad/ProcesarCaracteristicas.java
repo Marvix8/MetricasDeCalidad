@@ -27,11 +27,10 @@ public class ProcesarCaracteristicas {
 		
 		double resultado = (valorAlcanzado/valorMaximo) * 100; 
 		
-		calificacionCaracteristica(caracteristicas, resultado);
+		calificarCaracteristica(caracteristicas, resultado);
 		
 		return resultado;
 	}
-	
 	
 	private static double calcularValorMaximo(Caracteristicas caracteristicas) {
 		
@@ -69,7 +68,7 @@ public class ProcesarCaracteristicas {
 			cantidadCaracteristicas ++;
 		}
 		
-		if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
+		if(caracteristicas.getAyudaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
 			cantidadCaracteristicas ++;
 		}
 		
@@ -140,9 +139,9 @@ public class ProcesarCaracteristicas {
 		
 		}
 		
-		if(caracteristicas.getAyduaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
+		if(caracteristicas.getAyudaContextual() != null && caracteristicas.getManualUsuarioIncorporado() != null) {
 			 
-			valor += medirCaracteristicaBooleana(caracteristicas.getAyduaContextual(), caracteristicas.getManualUsuarioIncorporado());
+			valor += medirCaracteristicaBooleana(caracteristicas.getAyudaContextual(), caracteristicas.getManualUsuarioIncorporado());
 		
 		}
 		
@@ -216,26 +215,132 @@ public class ProcesarCaracteristicas {
 		}
 	}
 	
-	private static void calificacionCaracteristica(Caracteristicas caracteristicas, Double resultado) {
+	private static void calificarCaracteristica(Caracteristicas caracteristicas, Double resultado) {
 		
-		// Se califica toda la aplicación en función del resultado.
-		if	(resultado >= 70.00) {
-			caracteristicas.setResultadoFinal(Calificacion.BUENO);
-		} else if (resultado <= 40.00) {
-			caracteristicas.setResultadoFinal(Calificacion.MALO);
+		int cantidadMalos = 0;
+		
+		// Se califica la característica Seguridad de Acceso..
+		if(caracteristicas.getEncriptacionDatos() && caracteristicas.getInicioSesionUsuarios()) {
+			caracteristicas.setSeguridadAcceso(Calificacion.BUENO);
+		} else if (caracteristicas.getEncriptacionDatos() || caracteristicas.getInicioSesionUsuarios()) {
+			caracteristicas.setSeguridadAcceso(Calificacion.REGULAR);
 		} else {
-			caracteristicas.setResultadoFinal(Calificacion.REGULAR);
+			caracteristicas.setSeguridadAcceso(Calificacion.MALO);
+			cantidadMalos ++;
+		}		
+
+		// Se califica la característica Exactitud de los Resultados.
+		if (caracteristicas.getOrdenError() >= -3) {
+			caracteristicas.setExactitudResultados(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getOrdenError() <= -7) {
+			caracteristicas.setExactitudResultados(Calificacion.BUENO);
+		} else {
+			caracteristicas.setExactitudResultados(Calificacion.REGULAR);
 		}
 		
-		// Se califica la característica Funcionalidad.
-		if(caracteristicas.getEncriptacionDatos() == true 
-				&& caracteristicas.getInicioSesionUsuarios() == true) {
-			caracteristicas.setFuncionalidad(Calificacion.BUENO);
-		} else if (caracteristicas.getEncriptacionDatos() == true 
-				|| caracteristicas.getInicioSesionUsuarios() == true) {
-			caracteristicas.setFuncionalidad(Calificacion.REGULAR);
+		// Se califica la característica Utilización de Recursos.
+		if (caracteristicas.getUsoProcesador() >= 30.00) {
+			caracteristicas.setUtilizacionRecursos(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getUsoProcesador() <= 10.00) {
+			caracteristicas.setUtilizacionRecursos(Calificacion.BUENO);
 		} else {
-			caracteristicas.setFuncionalidad(Calificacion.MALO);
+			caracteristicas.setUtilizacionRecursos(Calificacion.REGULAR);
+		}
+		
+		// Se califica la característica Comportamiento Frente al Tiempo.
+		if (caracteristicas.getTiempoSinInformarEstado() >= 6) {
+			caracteristicas.setComportamientoFrenteTiempo(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getTiempoSinInformarEstado() <= 2) {
+			caracteristicas.setComportamientoFrenteTiempo(Calificacion.BUENO);
+		} else {
+			caracteristicas.setComportamientoFrenteTiempo(Calificacion.REGULAR);
+		}
+		
+		// Se califica la característica Tolerancia a Fallos.
+		if (caracteristicas.getProteccionDatosProcesados() && caracteristicas.getLogActividades()) {
+			caracteristicas.setToleranciaFallos(Calificacion.BUENO);
+		} else if (caracteristicas.getProteccionDatosProcesados() || caracteristicas.getLogActividades()) {
+			caracteristicas.setToleranciaFallos(Calificacion.REGULAR);
+		} else {
+			caracteristicas.setToleranciaFallos(Calificacion.MALO);
+			cantidadMalos ++;
+		}
+		
+		// Se califica la característica Capacidad de Recuperación de Errores.
+		if (caracteristicas.getReanudarActividadAnteFalla() && caracteristicas.getReanudarEnEstadoAnterior()) {
+			caracteristicas.setCapacidadRecuperacionErrores(Calificacion.BUENO);
+		} else if (caracteristicas.getReanudarActividadAnteFalla() || caracteristicas.getReanudarEnEstadoAnterior()) {
+			caracteristicas.setCapacidadRecuperacionErrores(Calificacion.REGULAR);
+		} else {
+			caracteristicas.setCapacidadRecuperacionErrores(Calificacion.MALO);
+			cantidadMalos ++;
+		}
+		
+		// Se califica la característica Capacidad del Código de ser Analizado.
+		if (caracteristicas.getPorcentajeComentariosPorMetodo() <= 30.00) {
+			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getPorcentajeComentariosPorMetodo() > 70.00) {
+			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.BUENO);
+		} else {
+			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.REGULAR);
+		}
+		
+		// Se califica la característica Capacidad del Código de ser Cambiado.
+		if (caracteristicas.getComplejidadCiclomatica() >= 20) {
+			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getPorcentajeComentariosPorMetodo() <= 10) {
+			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.BUENO);
+		} else {
+			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.REGULAR);
+		}		
+		
+		// Se califica la característica Capacidad de ser Entendido.
+		if (caracteristicas.getAyudaContextual() && caracteristicas.getManualUsuarioIncorporado()) {
+			caracteristicas.setCapacidadDeSerEntendido(Calificacion.BUENO);
+		} else if (caracteristicas.getAyudaContextual() || caracteristicas.getManualUsuarioIncorporado()) {
+			caracteristicas.setCapacidadDeSerEntendido(Calificacion.REGULAR);
+		} else {
+			caracteristicas.setCapacidadDeSerEntendido(Calificacion.MALO);
+			cantidadMalos ++;
+		}
+		
+		// Se califica la característica Capacidad de ser Operado.
+		if (caracteristicas.getCapacidadDeSerOperado().equals(Calificacion.MALO)) {
+			cantidadMalos ++;
+		}
+		
+		// Se califica la característica Adaptabilidad.
+		if (caracteristicas.getCantSOCompatibles() == 1) {
+			caracteristicas.setAdaptabilidad(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getCantSOCompatibles() == 2) {
+			caracteristicas.setAdaptabilidad(Calificacion.REGULAR);
+		} else {
+			caracteristicas.setAdaptabilidad(Calificacion.BUENO);
+		}
+		
+		// Se califica la característica Instalabilidad.
+		if (caracteristicas.getCantPasosInstalacion() >= 7) {
+			caracteristicas.setAdaptabilidad(Calificacion.MALO);
+			cantidadMalos ++;
+		} else if (caracteristicas.getCantPasosInstalacion() <= 3) {
+			caracteristicas.setAdaptabilidad(Calificacion.BUENO);
+		} else {
+			caracteristicas.setAdaptabilidad(Calificacion.REGULAR);
+		}	
+		
+		// Se califica toda la aplicación en función del resultado.
+		if (resultado <= 40.00 || cantidadMalos > 0) {
+			caracteristicas.setResultadoFinal(Calificacion.MALO);
+		} else if (resultado >= 70.00) {
+			caracteristicas.setResultadoFinal(Calificacion.BUENO);
+		} else {
+			caracteristicas.setResultadoFinal(Calificacion.REGULAR);
 		}
 		
 	}

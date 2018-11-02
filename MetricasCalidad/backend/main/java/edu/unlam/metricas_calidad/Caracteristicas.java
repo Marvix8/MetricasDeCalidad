@@ -13,21 +13,27 @@ public class Caracteristicas {
 	private Boolean reanudarEnEstadoAnterior;
 	private Double	porcentajeComentariosPorMetodo;
 	private Double complejidadCiclomatica;
-	private Boolean ayduaContextual;
+	private Boolean ayudaContextual;
 	private Boolean manualUsuarioIncorporado;
-	private Calificacion capacidadDeSerOperado;
 	private Double cantSOCompatibles;
 	private Double cantPasosInstalacion;
 	
 	/*
 	 * Calificación de cada una de las Características Analizadas
 	 */
-	private Calificacion funcionalidad;
-	private Calificacion eficiencia;
-	private Calificacion fiabilidad;
-	private Calificacion mantenibilidad;
-	private Calificacion usabilidad;
-	private Calificacion portabilidad;
+	private Calificacion seguridadAcceso;
+	private Calificacion exactitudResultados;
+	private Calificacion utilizacionRecursos;
+	private Calificacion comportamientoFrenteTiempo;
+	private Calificacion toleranciaFallos;
+	private Calificacion capacidadRecuperacionErrores;
+	private Calificacion capacidadDeSerAnalizado;
+	private Calificacion capacidadDeSerCambiado;
+	private Calificacion capacidadDeSerEntendido;
+	private Calificacion capacidadDeSerOperado;
+	private Calificacion adaptabilidad;
+	private Calificacion instalabilidad;
+	
 	private Calificacion resultadoFinal;
 	
 	public Boolean getEncriptacionDatos() {
@@ -134,12 +140,12 @@ public class Caracteristicas {
 		this.complejidadCiclomatica = complejidadCiclomatica;
 	}
 	
-	public Boolean getAyduaContextual() {
-		return ayduaContextual;
+	public Boolean getAyudaContextual() {
+		return ayudaContextual;
 	}
 	
-	public void setAyduaContextual(Boolean ayduaContextual) {
-		this.ayduaContextual = ayduaContextual;
+	public void setAyudaContextual(Boolean ayduaContextual) {
+		this.ayudaContextual = ayduaContextual;
 	}
 	
 	public Boolean getManualUsuarioIncorporado() {
@@ -182,52 +188,92 @@ public class Caracteristicas {
 		this.cantPasosInstalacion = cantPasosInstalacion;
 	}
 
-	public Calificacion getFuncionalidad() {
-		return funcionalidad;
+	public Calificacion getSeguridadAcceso() {
+		return seguridadAcceso;
 	}
 
-	public void setFuncionalidad(Calificacion funcionalidad) {
-		this.funcionalidad = funcionalidad;
+	public void setSeguridadAcceso(Calificacion seguridadAcceso) {
+		this.seguridadAcceso = seguridadAcceso;
 	}
 
-	public Calificacion getEficiencia() {
-		return eficiencia;
+	public Calificacion getExactitudResultados() {
+		return exactitudResultados;
 	}
 
-	public void setEficiencia(Calificacion eficiencia) {
-		this.eficiencia = eficiencia;
+	public void setExactitudResultados(Calificacion exactitudResultados) {
+		this.exactitudResultados = exactitudResultados;
 	}
 
-	public Calificacion getFiabilidad() {
-		return fiabilidad;
+	public Calificacion getUtilizacionRecursos() {
+		return utilizacionRecursos;
 	}
 
-	public void setFiabilidad(Calificacion fiabilidad) {
-		this.fiabilidad = fiabilidad;
+	public void setUtilizacionRecursos(Calificacion utilizacionRecursos) {
+		this.utilizacionRecursos = utilizacionRecursos;
 	}
 
-	public Calificacion getMantenibilidad() {
-		return mantenibilidad;
+	public Calificacion getComportamientoFrenteTiempo() {
+		return comportamientoFrenteTiempo;
 	}
 
-	public void setMantenibilidad(Calificacion mantenibilidad) {
-		this.mantenibilidad = mantenibilidad;
+	public void setComportamientoFrenteTiempo(Calificacion comportamientoFrenteTiempo) {
+		this.comportamientoFrenteTiempo = comportamientoFrenteTiempo;
 	}
 
-	public Calificacion getUsabilidad() {
-		return usabilidad;
+	public Calificacion getToleranciaFallos() {
+		return toleranciaFallos;
 	}
 
-	public void setUsabilidad(Calificacion usabilidad) {
-		this.usabilidad = usabilidad;
+	public void setToleranciaFallos(Calificacion toleranciaFallos) {
+		this.toleranciaFallos = toleranciaFallos;
 	}
 
-	public Calificacion getPortabilidad() {
-		return portabilidad;
+	public Calificacion getCapacidadRecuperacionErrores() {
+		return capacidadRecuperacionErrores;
 	}
 
-	public void setPortabilidad(Calificacion portabilidad) {
-		this.portabilidad = portabilidad;
+	public void setCapacidadRecuperacionErrores(Calificacion capacidadRecuperacionErrores) {
+		this.capacidadRecuperacionErrores = capacidadRecuperacionErrores;
+	}
+
+	public Calificacion getCapacidadDeSerAnalizado() {
+		return capacidadDeSerAnalizado;
+	}
+
+	public void setCapacidadDeSerAnalizado(Calificacion capacidadDeSerAnalizado) {
+		this.capacidadDeSerAnalizado = capacidadDeSerAnalizado;
+	}
+
+	public Calificacion getCapacidadDeSerCambiado() {
+		return capacidadDeSerCambiado;
+	}
+
+	public void setCapacidadDeSerCambiado(Calificacion capacidadDeSerCambiado) {
+		this.capacidadDeSerCambiado = capacidadDeSerCambiado;
+	}
+
+	public Calificacion getCapacidadDeSerEntendido() {
+		return capacidadDeSerEntendido;
+	}
+
+	public void setCapacidadDeSerEntendido(Calificacion capacidadDeSerEntendido) {
+		this.capacidadDeSerEntendido = capacidadDeSerEntendido;
+	}
+
+	public Calificacion getAdaptabilidad() {
+		return adaptabilidad;
+	}
+
+	public void setAdaptabilidad(Calificacion adaptabilidad) {
+		this.adaptabilidad = adaptabilidad;
+	}
+
+	public Calificacion getInstalabilidad() {
+		return instalabilidad;
+	}
+
+	public void setInstalabilidad(Calificacion instalabilidad) {
+		this.instalabilidad = instalabilidad;
 	}
 
 	public Calificacion getResultadoFinal() {
@@ -237,5 +283,5 @@ public class Caracteristicas {
 	public void setResultadoFinal(Calificacion resultadoFinal) {
 		this.resultadoFinal = resultadoFinal;
 	}
-	
+
 }

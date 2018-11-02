@@ -202,7 +202,7 @@ public class InterfazDeMetricasEnConsola {
 					
 					mensaje = "Ingrese 1 si posee ayuda contextual sobre menús y botones de acción o 0 si no los posee\n";
 					
-					caracteristicas.setAyduaContextual(ingresoBooleano(mensaje, null));
+					caracteristicas.setAyudaContextual(ingresoBooleano(mensaje, null));
 					
 					mensaje = "Ingrese 1 si posee manual de usuario incorporado al sistema como un menú dedicado o 0 de no poseerlo\n";
 					
