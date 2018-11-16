@@ -114,7 +114,7 @@
                                                       <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
                                                       <TextField fx:id="utilizacionRecursosTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
                                                          <tooltip>
-                                                            <Tooltip fx:id="utilizacionRecursosToolTip" text="\% de uso de un procesador AMD A6 6400k" width="50.0" />
+                                                            <Tooltip fx:id="utilizacionRecursosToolTip" text="\% de uso de un procesador Intel Core i5-4210" width="50.0" />
                                                          </tooltip></TextField>
                                                    </children>
                                                 </GridPane>
