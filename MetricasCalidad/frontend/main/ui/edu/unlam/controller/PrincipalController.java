@@ -357,7 +357,7 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	exactitudResultadosCombo.pseudoClassStateChanged(errorClass, false);
-		    	if (exactitudResultadosCombo.getValue().equals("<= 10^(-8)")) {
+		    	if (exactitudResultadosCombo.getValue().equals(">= 10^(-8)")) {
 		    		exactitudResultadosflag = true;
 					caracteristicas.setExactitudResultados(Calificacion.MALO);
 				} else if (exactitudResultadosCombo.getValue().equals("< 10^(-8) && > 10^(-7)")) {
