@@ -132,7 +132,8 @@
                                                       <TextField fx:id="comportamientoFrenteTiempoTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
                                                          <tooltip>
                                                             <Tooltip fx:id="comportamientoFrenteTiempoToolTip" text="Tiempo sin informar estado de una solicitud en segundos" />
-                                                         </tooltip></TextField>
+                                                         </tooltip>
+                                                      </TextField>
                                                    </children>
                                                 </GridPane>
                                                 <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16; -fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #009999;" text="Mantenibilidad" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4" />
@@ -278,7 +279,7 @@
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #751aff;" text="Capacidad de adaptarse a diferentes SO sin cambiar su estructura interna" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-color: #751aff;" text="Cantidad de Sistemas Operativos" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                                                       <TextField fx:id="multiSOTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
                                                          <tooltip>
                                                             <Tooltip fx:id="multiSOToolTip" text="Capacidad del producto software de adaptarse a diferentes sistemas operativos sin cambiar su estructura interna" />

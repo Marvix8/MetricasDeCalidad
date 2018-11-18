@@ -181,30 +181,30 @@ public class PrincipalController implements Initializable{
 			"Se Opera Sin Asistencia");
 	
 	// Listado usado para popular el combo fx:id="exactitudResultadosComboBox"
-		ObservableList<String> ListaExactitudResultados = FXCollections.observableArrayList(
-			"<= 10^(-8)",
-			"< 10^(-8) && > 10^(-7)",
-			"<= 10^(-7)");
+	ObservableList<String> ListaExactitudResultados = FXCollections.observableArrayList(
+		">= 10^(-8)",
+		"< 10^(-8) && > 10^(-7)",
+		"<= 10^(-7)");
 
-		/*
-		 * Flags que indican si se completó el campo.
-		 */
-		private boolean encriptacionDatosflag;
-		private boolean ayudaflag;
-		private boolean exactitudResultadosflag;
-		private boolean datosProcesadosflag;
-		private boolean capacidadSerOperadoflag;
-		private boolean fallaCriticaflag;
-		private boolean iniciarSesionflag;
-		private boolean manualUsuarioflag;
-		private boolean logflag;
-		private boolean estadoAnteriorflag;
-		private boolean complejidadCiclomaticaflag;
-		private boolean comportamientoFrenteTiempoflag;
-		private boolean intalacionflag;
-		private boolean multiSOflag;
-		private boolean porcentajeComentariosflag;
-		private boolean utilizacionRecursosflag;		
+	/*
+	 * Flags que indican si se completó el campo.
+	 */
+	private boolean encriptacionDatosflag;
+	private boolean ayudaflag;
+	private boolean exactitudResultadosflag;
+	private boolean datosProcesadosflag;
+	private boolean capacidadSerOperadoflag;
+	private boolean fallaCriticaflag;
+	private boolean iniciarSesionflag;
+	private boolean manualUsuarioflag;
+	private boolean logflag;
+	private boolean estadoAnteriorflag;
+	private boolean complejidadCiclomaticaflag;
+	private boolean comportamientoFrenteTiempoflag;
+	private boolean intalacionflag;
+	private boolean multiSOflag;
+	private boolean porcentajeComentariosflag;
+	private boolean utilizacionRecursosflag;		
 		
 		
 	/*
