@@ -182,8 +182,8 @@ public class PrincipalController implements Initializable{
 	
 	// Listado usado para popular el combo fx:id="exactitudResultadosComboBox"
 	ObservableList<String> ListaExactitudResultados = FXCollections.observableArrayList(
-		">= 10^(-8)",
-		"< 10^(-8) && > 10^(-7)",
+		">= 10^(-3)",
+		"< 10^(-3) && > 10^(-7)",
 		"<= 10^(-7)");
 
 	/*
@@ -357,10 +357,10 @@ public class PrincipalController implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		    	exactitudResultadosCombo.pseudoClassStateChanged(errorClass, false);
-		    	if (exactitudResultadosCombo.getValue().equals(">= 10^(-8)")) {
+		    	if (exactitudResultadosCombo.getValue().equals(">= 10^(-3)")) {
 		    		exactitudResultadosflag = true;
 					caracteristicas.setExactitudResultados(Calificacion.MALO);
-				} else if (exactitudResultadosCombo.getValue().equals("< 10^(-8) && > 10^(-7)")) {
+				} else if (exactitudResultadosCombo.getValue().equals("< 10^(-3) && > 10^(-7)")) {
 					exactitudResultadosflag = true;
 					caracteristicas.setExactitudResultados(Calificacion.REGULAR);
 				} else if (exactitudResultadosCombo.getValue().equals("<= 10^(-7)")) {
