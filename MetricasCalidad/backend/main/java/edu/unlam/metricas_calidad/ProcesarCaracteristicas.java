@@ -14,8 +14,8 @@ public class ProcesarCaracteristicas {
 	public static final double LIMITE_SUP_COMPLEJIDAD_CICLOMATICA = 20;
 	public static final double LIMITE_INF_CANTIDAD_SO_COMPATIBLES = 1;
 	public static final double LIMITE_SUP_CANTIDAD_SO_COMPATIBLES = 3;
-	public static final double LIMITE_INF_CANTIDAD_PASOS_INSTALACION = 3;
-	public static final double LIMITE_SUP_CANTIDAD_PASOS_INSTALACION = 7;
+	public static final double LIMITE_INF_CANTIDAD_PASOS_INSTALACION = 4;
+	public static final double LIMITE_SUP_CANTIDAD_PASOS_INSTALACION = 8;
 	
 	public static final double MEJOR_CALIFICACION = 3;
 
@@ -242,20 +242,20 @@ public class ProcesarCaracteristicas {
 		}
 		
 		// Se califica la característica Utilización de Recursos.
-		if (caracteristicas.getUsoProcesador() >= 30.00) {
+		if (caracteristicas.getUsoProcesador() >= LIMITE_SUP_USO_PROCESADOR) {
 			caracteristicas.setUtilizacionRecursos(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getUsoProcesador() <= 10.00) {
+		} else if (caracteristicas.getUsoProcesador() <= LIMITE_INF_USO_PROCESADOR) {
 			caracteristicas.setUtilizacionRecursos(Calificacion.BUENO);
 		} else {
 			caracteristicas.setUtilizacionRecursos(Calificacion.REGULAR);
 		}
 		
 		// Se califica la característica Comportamiento Frente al Tiempo.
-		if (caracteristicas.getTiempoSinInformarEstado() >= 6) {
+		if (caracteristicas.getTiempoSinInformarEstado() >= LIMITE_SUP_TIEMPO_SIN_INFORMAR_ESTADO) {
 			caracteristicas.setComportamientoFrenteTiempo(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getTiempoSinInformarEstado() <= 2) {
+		} else if (caracteristicas.getTiempoSinInformarEstado() <= LIMITE_INF_TIEMPO_SIN_INFORMAR_ESTADO) {
 			caracteristicas.setComportamientoFrenteTiempo(Calificacion.BUENO);
 		} else {
 			caracteristicas.setComportamientoFrenteTiempo(Calificacion.REGULAR);
@@ -282,20 +282,20 @@ public class ProcesarCaracteristicas {
 		}
 		
 		// Se califica la característica Capacidad del Código de ser Analizado.
-		if (caracteristicas.getPorcentajeComentariosPorMetodo() <= 30.00) {
+		if (caracteristicas.getPorcentajeComentariosPorMetodo() <= LIMITE_INF_PORCENTAJE_COMENTARIOS_POR_METODO) {
 			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getPorcentajeComentariosPorMetodo() > 70.00) {
+		} else if (caracteristicas.getPorcentajeComentariosPorMetodo() > LIMITE_SUP_PORCENTAJE_COMENTARIOS_POR_METODO) {
 			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.BUENO);
 		} else {
 			caracteristicas.setCapacidadDeSerAnalizado(Calificacion.REGULAR);
 		}
 		
 		// Se califica la característica Capacidad del Código de ser Cambiado.
-		if (caracteristicas.getComplejidadCiclomatica() >= 20) {
+		if (caracteristicas.getComplejidadCiclomatica() >= LIMITE_SUP_COMPLEJIDAD_CICLOMATICA) {
 			caracteristicas.setCapacidadDeSerCambiado(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getComplejidadCiclomatica() <= 10) {
+		} else if (caracteristicas.getComplejidadCiclomatica() <= LIMITE_INF_COMPLEJIDAD_CICLOMATICA) {
 			caracteristicas.setCapacidadDeSerCambiado(Calificacion.BUENO);
 		} else {
 			caracteristicas.setCapacidadDeSerCambiado(Calificacion.REGULAR);
@@ -317,20 +317,20 @@ public class ProcesarCaracteristicas {
 		}
 		
 		// Se califica la característica Adaptabilidad.
-		if (caracteristicas.getCantSOCompatibles() == 1) {
+		if (caracteristicas.getCantSOCompatibles() <= LIMITE_INF_CANTIDAD_SO_COMPATIBLES) {
 			caracteristicas.setAdaptabilidad(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getCantSOCompatibles() == 2) {
-			caracteristicas.setAdaptabilidad(Calificacion.REGULAR);
-		} else {
+		} else if (caracteristicas.getCantSOCompatibles() >= LIMITE_SUP_CANTIDAD_SO_COMPATIBLES) {
 			caracteristicas.setAdaptabilidad(Calificacion.BUENO);
+		} else {
+			caracteristicas.setAdaptabilidad(Calificacion.REGULAR);
 		}
 		
 		// Se califica la característica Instalabilidad.
-		if (caracteristicas.getCantPasosInstalacion() >= 7) {
+		if (caracteristicas.getCantPasosInstalacion() >= LIMITE_SUP_CANTIDAD_PASOS_INSTALACION) {
 			caracteristicas.setInstalabilidad(Calificacion.MALO);
 			cantidadMalos ++;
-		} else if (caracteristicas.getCantPasosInstalacion() <= 3) {
+		} else if (caracteristicas.getCantPasosInstalacion() <= LIMITE_INF_CANTIDAD_PASOS_INSTALACION) {
 			caracteristicas.setInstalabilidad(Calificacion.BUENO);
 		} else {
 			caracteristicas.setInstalabilidad(Calificacion.REGULAR);
